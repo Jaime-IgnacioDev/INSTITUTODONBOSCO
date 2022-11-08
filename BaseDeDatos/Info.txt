@@ -1,0 +1,15 @@
+
+
+Nombre de la base de datos: schooligniter
+
+PhP v5.6
+
+Credenciales
+
+admin@mail.com / Password@123
+
+apoderado / pedro@mail.com / 123456
+
+estudiante / collines@mail.com / 123456
+
+profesor / maria@mail.com / 123456
