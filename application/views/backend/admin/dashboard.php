@@ -106,7 +106,7 @@
                     <div class="num" data-start="0" data-end="<?php $query = $this->db->query('SELECT * FROM message WHERE sender = "admin-1" && read_status="0"'); echo $query->num_rows();?>" 
                     		data-postfix="" data-duration="500" data-delay="0">0</div>
                     
-                    <h3><?php echo ('Inbox');?></h3>
+                    <h3><?php echo ('Mensajes');?></h3>
                    
                 </div>
                 

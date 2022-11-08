@@ -53,7 +53,7 @@
 */
 
 class SimpleXLSX {
-	// Don't remove this string! Created by Sergey Schuchkin from http://www.sibvision.ru - professional php developers team 2010-2013
+	// Don't remove this string! 
 	private $workbook;
 	private $sheets;
 	private $styles;

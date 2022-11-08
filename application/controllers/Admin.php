@@ -35,7 +35,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         $page_data['page_name']  = 'dashboard';
-        $page_data['page_title'] = 'Admin Dashboard';
+        $page_data['page_title'] = 'Panel de Administrativo';
         $this->load->view('backend/index', $page_data);
     }
     
@@ -47,7 +47,7 @@ class Admin extends CI_Controller
             redirect(base_url(), 'refresh');
 			
 		$page_data['page_name']  = 'student_add';
-		$page_data['page_title'] = 'Add Student';
+		$page_data['page_title'] = 'Agregar Estudiante';
 		$this->load->view('backend/index', $page_data);
 	}
 	
@@ -90,7 +90,7 @@ class Admin extends CI_Controller
         }
         $page_data['acdSession']    = $this->db->get('acd_session')->result_array();
         $page_data['page_name']  = 'acd_session';
-		$page_data['page_title'] = 'Academic Session';
+		$page_data['page_title'] = 'Administrar Año Escolar';
         $this->load->view('backend/index', $page_data);
     }
 	 /****MANAGE ONLINE ADMISSION*****/
@@ -377,7 +377,7 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
-        $page_data['page_title'] 	= 'All Parents';
+        $page_data['page_title'] 	= 'Apoderados';
         $page_data['page_name']  = 'parent';
         $this->load->view('backend/index', $page_data);
     }
@@ -432,7 +432,7 @@ class Admin extends CI_Controller
         }
         $page_data['teachers']   = $this->db->get('teacher')->result_array();
         $page_data['page_name']  = 'teacher';
-        $page_data['page_title'] = 'Manage Teacher';
+        $page_data['page_title'] = 'Administrar Profesores';
         $this->load->view('backend/index', $page_data);
     }
     
@@ -472,7 +472,7 @@ class Admin extends CI_Controller
 		 $page_data['class_id']   = $param1;
         $page_data['subjects']   = $this->db->get_where('subject' , array('class_id' => $param1))->result_array();
         $page_data['page_name']  = 'subject';
-        $page_data['page_title'] = 'Manage Subject';
+        $page_data['page_title'] = 'Administrar Asignaturas';
         $this->load->view('backend/index', $page_data);
     }
     
@@ -511,7 +511,7 @@ class Admin extends CI_Controller
         }
         $page_data['classes']    = $this->db->get('class')->result_array();
         $page_data['page_name']  = 'class';
-        $page_data['page_title'] = 'Manage Class';
+        $page_data['page_title'] = 'Administrar Cursos';
         $this->load->view('backend/index', $page_data);
     }
 
@@ -525,7 +525,7 @@ class Admin extends CI_Controller
             $class_id           =   $this->db->get('class')->first_row()->class_id;
 
         $page_data['page_name']  = 'section';
-        $page_data['page_title'] = 'Manage Sections';
+        $page_data['page_title'] = 'Administrar Secciones';
         $page_data['class_id']   = $class_id;
         $this->load->view('backend/index', $page_data);    
     }
@@ -618,7 +618,7 @@ class Admin extends CI_Controller
         }
         $page_data['exams']      = $this->db->get('exam')->result_array();
         $page_data['page_name']  = 'exam';
-        $page_data['page_title'] = 'Manage Exam';
+        $page_data['page_title'] = 'Administrar Pruebas';
         $this->load->view('backend/index', $page_data);
     }
 
@@ -664,7 +664,7 @@ class Admin extends CI_Controller
         }
                 
         $page_data['page_name']  = 'exam_marks_sms';
-        $page_data['page_title'] = 'Send Marks by SMS';
+        $page_data['page_title'] = 'Enviar Notas por SMS';
         $this->load->view('backend/index', $page_data);
     }
 
@@ -702,7 +702,7 @@ class Admin extends CI_Controller
         $page_data['page_info'] = 'Exam marks';
         
         $page_data['page_name']  = 'marks';
-        $page_data['page_title'] = 'Manage Exam Marks';
+        $page_data['page_title'] = 'Administrar Notas';
         $this->load->view('backend/index', $page_data);
     }
     
@@ -746,7 +746,7 @@ class Admin extends CI_Controller
         }
         $page_data['grades']     = $this->db->get('grade')->result_array();
         $page_data['page_name']  = 'grade';
-        $page_data['page_title'] = 'Manage Grade';
+        $page_data['page_title'] = 'Administrar Puntuación Notas';
         $this->load->view('backend/index', $page_data);
     }
     
@@ -788,7 +788,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/class_routine/', 'refresh');
         }
         $page_data['page_name']  = 'class_routine';
-        $page_data['page_title'] = 'Manage Class Routine';
+        $page_data['page_title'] = 'Administrar Rutina de Clases';
         $this->load->view('backend/index', $page_data);
     }
 	
@@ -820,7 +820,7 @@ class Admin extends CI_Controller
         $page_data['class_id'] =	$class_id;
 		
         $page_data['page_name']  =	'manage_attendance';
-        $page_data['page_title'] =	'Manage Daily Attendance';
+        $page_data['page_title'] =	'Administrar Asistencia Diaria'; 
 		$this->load->view('backend/index', $page_data);
 	}
 	function attendance_selector()
@@ -908,7 +908,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/invoice', 'refresh');
         }
         $page_data['page_name']  = 'invoice';
-        $page_data['page_title'] = 'Manage Invoice/Payment';
+        $page_data['page_title'] = 'Administrar Pagos/Facturas';
         $this->db->order_by('creation_timestamp', 'desc');
         $page_data['invoices'] = $this->db->get('invoice')->result_array();
         $this->load->view('backend/index', $page_data);
@@ -920,7 +920,7 @@ class Admin extends CI_Controller
        if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         $page_data['page_name']  = 'income';
-        $page_data['page_title'] = 'Incomes';
+        $page_data['page_title'] = 'Ingresos';
         $this->db->order_by('creation_timestamp', 'desc');
         $page_data['invoices'] = $this->db->get('invoice')->result_array();
         $this->load->view('backend/index', $page_data); 
@@ -965,7 +965,7 @@ class Admin extends CI_Controller
         }
 
         $page_data['page_name']  = 'expense';
-        $page_data['page_title'] = 'Expenses';
+        $page_data['page_title'] = 'Gastos';
         $this->load->view('backend/index', $page_data); 
     }
 
@@ -994,135 +994,10 @@ class Admin extends CI_Controller
         }
 
         $page_data['page_name']  = 'expense_category';
-        $page_data['page_title'] = 'Expense Category';
+        $page_data['page_title'] = 'Categorias de Gastos';
         $this->load->view('backend/index', $page_data);
     }
 
-    /**********MANAGE LIBRARY / BOOKS********************/
-    function book($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-            $data['name']        = $this->input->post('name');
-            $data['description'] = $this->input->post('description');
-            $data['price']       = $this->input->post('price');
-            $data['author']      = $this->input->post('author');
-            $data['class_id']    = $this->input->post('class_id');
-            $data['status']      = $this->input->post('status');
-            $this->db->insert('book', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['name']        = $this->input->post('name');
-            $data['description'] = $this->input->post('description');
-            $data['price']       = $this->input->post('price');
-            $data['author']      = $this->input->post('author');
-            $data['class_id']    = $this->input->post('class_id');
-            $data['status']      = $this->input->post('status');
-            
-            $this->db->where('book_id', $param2);
-            $this->db->update('book', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('book', array(
-                'book_id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('book_id', $param2);
-            $this->db->delete('book');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
-        }
-        $page_data['books']      = $this->db->get('book')->result_array();
-        $page_data['page_name']  = 'book';
-        $page_data['page_title'] = 'Manage Library Books';
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
-    function transport($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-            $data['route_name']        = $this->input->post('route_name');
-            $data['number_of_vehicle'] = $this->input->post('number_of_vehicle');
-            $data['description']       = $this->input->post('description');
-            $data['route_fare']        = $this->input->post('route_fare');
-            $this->db->insert('transport', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/transport', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['route_name']        = $this->input->post('route_name');
-            $data['number_of_vehicle'] = $this->input->post('number_of_vehicle');
-            $data['description']       = $this->input->post('description');
-            $data['route_fare']        = $this->input->post('route_fare');
-            
-            $this->db->where('transport_id', $param2);
-            $this->db->update('transport', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/transport', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('transport', array(
-                'transport_id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('transport_id', $param2);
-            $this->db->delete('transport');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/transport', 'refresh');
-        }
-        $page_data['transports'] = $this->db->get('transport')->result_array();
-        $page_data['page_name']  = 'transport';
-        $page_data['page_title'] = 'Manage Transport';
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE DORMITORY / HOSTELS / ROOMS ********************/
-    function dormitory($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-            $data['name']           = $this->input->post('name');
-            $data['number_of_room'] = $this->input->post('number_of_room');
-            $data['description']    = $this->input->post('description');
-            $this->db->insert('dormitory', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/dormitory', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['name']           = $this->input->post('name');
-            $data['number_of_room'] = $this->input->post('number_of_room');
-            $data['description']    = $this->input->post('description');
-            
-            $this->db->where('dormitory_id', $param2);
-            $this->db->update('dormitory', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/dormitory', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('dormitory', array(
-                'dormitory_id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('dormitory_id', $param2);
-            $this->db->delete('dormitory');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/dormitory', 'refresh');
-        }
-        $page_data['dormitories'] = $this->db->get('dormitory')->result_array();
-        $page_data['page_name']   = 'dormitory';
-        $page_data['page_title']  = 'Manage Dormitory';
-        $this->load->view('backend/index', $page_data);
-        
-    }
     
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')
@@ -1210,7 +1085,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/noticeboard/', 'refresh');
         }
         $page_data['page_name']  = 'noticeboard';
-        $page_data['page_title'] = 'Manage Noticeboard';
+        $page_data['page_title'] = 'Administrar Comunicados';
         $page_data['notices']    = $this->db->get('noticeboard')->result_array();
         $this->load->view('backend/index', $page_data);
     }
@@ -1240,7 +1115,7 @@ class Admin extends CI_Controller
 
         $page_data['message_inner_page_name']   = $param1;
         $page_data['page_name']                 = 'message';
-        $page_data['page_title']                = 'Private Messaging';
+        $page_data['page_title']                = 'Mensajes';
         $this->load->view('backend/index', $page_data);
     }
     

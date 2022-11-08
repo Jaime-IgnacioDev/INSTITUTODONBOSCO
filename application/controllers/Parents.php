@@ -2,12 +2,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/*	
- *	@author 	: Farid Ahmed
- *	date		: 27 september, 2014
- *	SIgnetBD
- *	efarid08@gmail.com
- */
 
 class Parents extends CI_Controller
 {
@@ -40,7 +34,7 @@ class Parents extends CI_Controller
         if ($this->session->userdata('parent_login') != 1)
             redirect(base_url(), 'refresh');
         $page_data['page_name']  = 'dashboard';
-        $page_data['page_title'] = get_phrase('parent_dashboard');
+        $page_data['page_title'] = get_phrase('Panel de Apoderado');
         $this->load->view('backend/index', $page_data);
     }
     
@@ -56,7 +50,7 @@ class Parents extends CI_Controller
         }
         $page_data['teachers']   = $this->db->get('teacher')->result_array();
         $page_data['page_name']  = 'teacher';
-        $page_data['page_title'] = get_phrase('manage_teacher');
+        $page_data['page_title'] = get_phrase('Profesores');
         $this->load->view('backend/index', $page_data);
     }
     
@@ -79,7 +73,7 @@ class Parents extends CI_Controller
             'class_id' => $parent_class_id
         ))->result_array();
         $page_data['page_name']  = 'subject';
-        $page_data['page_title'] = get_phrase('manage_subject');
+        $page_data['page_title'] = get_phrase('Asignaturas');
         $this->load->view('backend/index', $page_data);
     }
     
@@ -92,7 +86,7 @@ class Parents extends CI_Controller
             redirect(base_url(), 'refresh');
         $page_data['student_id'] = $param1;
         $page_data['page_name']  = 'marks';
-        $page_data['page_title'] = get_phrase('manage_marks');
+        $page_data['page_title'] = get_phrase('Notas');
         $this->load->view('backend/index', $page_data);
     }
     
@@ -105,7 +99,7 @@ class Parents extends CI_Controller
         
         $page_data['student_id'] = $param1;
         $page_data['page_name']  = 'class_routine';
-        $page_data['page_title'] = get_phrase('manage_class_routine');
+        $page_data['page_title'] = get_phrase('Rutina de Clases');
         $this->load->view('backend/index', $page_data);
     }
     
@@ -175,46 +169,11 @@ class Parents extends CI_Controller
         ))->row();
         $page_data['student_id'] = $student_id;
         $page_data['page_name']  = 'invoice';
-        $page_data['page_title'] = get_phrase('manage_invoice/payment');
+        $page_data['page_title'] = get_phrase('Administrar Pagos');
         $this->load->view('backend/index', $page_data);
     }
     
-    /**********MANAGE LIBRARY / BOOKS********************/
-    function book($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['books']      = $this->db->get('book')->result_array();
-        $page_data['page_name']  = 'book';
-        $page_data['page_title'] = get_phrase('manage_library_books');
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
-    function transport($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['transports'] = $this->db->get('transport')->result_array();
-        $page_data['page_name']  = 'transport';
-        $page_data['page_title'] = get_phrase('manage_transport');
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE DORMITORY / HOSTELS / ROOMS ********************/
-    function dormitory($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['dormitories'] = $this->db->get('dormitory')->result_array();
-        $page_data['page_name']   = 'dormitory';
-        $page_data['page_title']  = get_phrase('manage_dormitory');
-        $this->load->view('backend/index', $page_data);
-        
-    }
+    
     
     /**********WATCH NOTICEBOARD AND EVENT ********************/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')
@@ -224,7 +183,7 @@ class Parents extends CI_Controller
         
         $page_data['notices']    = $this->db->get('noticeboard')->result_array();
         $page_data['page_name']  = 'noticeboard';
-        $page_data['page_title'] = get_phrase('noticeboard');
+        $page_data['page_title'] = get_phrase('Comunicados');
         $this->load->view('backend/index', $page_data);
         
     }
@@ -266,7 +225,7 @@ class Parents extends CI_Controller
 
         $page_data['message_inner_page_name']   = $param1;
         $page_data['page_name']                 = 'message';
-        $page_data['page_title']                = get_phrase('private_messaging');
+        $page_data['page_title']                = get_phrase('Mensajes');
         $this->load->view('backend/index', $page_data);
     }
     
@@ -304,7 +263,7 @@ class Parents extends CI_Controller
             redirect(base_url() . 'index.php?parents/manage_profile/', 'refresh');
         }
         $page_data['page_name']  = 'manage_profile';
-        $page_data['page_title'] = get_phrase('manage_profile');
+        $page_data['page_title'] = get_phrase('Admnistrar Perfil');
         $page_data['edit_data']  = $this->db->get_where('parent', array(
             'parent_id' => $this->session->userdata('parent_id')
         ))->result_array();
