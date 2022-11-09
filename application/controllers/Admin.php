@@ -273,7 +273,7 @@ class Admin extends CI_Controller
             redirect('login', 'refresh');
 			
 		$page_data['page_name']  	= 'student_information';
-		$page_data['page_title'] 	= 'Student Information'. " - ".get_phrase('class')." : ".
+		$page_data['page_title'] 	= 'Información Estudiante'. " - ".get_phrase('Curso')." : ".
 											$this->crud_model->get_class_name($class_id);
 		$page_data['class_id'] 	= $class_id;
 		$this->load->view('backend/index', $page_data);
@@ -285,7 +285,7 @@ class Admin extends CI_Controller
             redirect('login', 'refresh');
 			
 		$page_data['page_name']  = 'student_marksheet';
-		$page_data['page_title'] 	= 'Student Marksheet'. " - ".get_phrase('class')." : ".
+		$page_data['page_title'] 	= 'Calificaciones Estudiante'. " - ".get_phrase('Curso')." : ".
 											$this->crud_model->get_class_name($class_id);
 		$page_data['class_id'] 	= $class_id;
 		$this->load->view('backend/index', $page_data);
@@ -1183,7 +1183,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/system_settings/', 'refresh'); 
         }
         $page_data['page_name']  = 'system_settings';
-        $page_data['page_title'] = 'System Settings';
+        $page_data['page_title'] = 'Configuración de Sistema';
         $page_data['settings']   = $this->db->get('settings')->result_array();
         $this->load->view('backend/index', $page_data);
     }
@@ -1240,71 +1240,12 @@ class Admin extends CI_Controller
         }
 
         $page_data['page_name']  = 'sms_settings';
-        $page_data['page_title'] = 'SMS Settings';
+        $page_data['page_title'] = 'Configuración SMS';
         $page_data['settings']   = $this->db->get('settings')->result_array();
         $this->load->view('backend/index', $page_data);
     }
     
-    /*****LANGUAGE SETTINGS*********/
-    function manage_language($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-			redirect(base_url() . 'index.php?login', 'refresh');
-		
-		if ($param1 == 'edit_phrase') {
-			$page_data['edit_profile'] 	= $param2;	
-		}
-		if ($param1 == 'update_phrase') {
-			$language	=	$param2;
-			$total_phrase	=	$this->input->post('total_phrase');
-			for($i = 1 ; $i < $total_phrase ; $i++)
-			{
-				//$data[$language]	=	$this->input->post('phrase').$i;
-				$this->db->where('phrase_id' , $i);
-				$this->db->update('language' , array($language => $this->input->post('phrase'.$i)));
-			}
-			redirect(base_url() . 'index.php?admin/manage_language/edit_phrase/'.$language, 'refresh');
-		}
-		if ($param1 == 'do_update') {
-			$language        = $this->input->post('language');
-			$data[$language] = $this->input->post('phrase');
-			$this->db->where('phrase_id', $param2);
-			$this->db->update('language', $data);
-			$this->session->set_flashdata('flash_message', get_phrase('settings_updated'));
-			redirect(base_url() . 'index.php?admin/manage_language/', 'refresh');
-		}
-		if ($param1 == 'add_phrase') {
-			$data['phrase'] = $this->input->post('phrase');
-			$this->db->insert('language', $data);
-			$this->session->set_flashdata('flash_message', get_phrase('settings_updated'));
-			redirect(base_url() . 'index.php?admin/manage_language/', 'refresh');
-		}
-		if ($param1 == 'add_language') {
-			$language = $this->input->post('language');
-			$this->load->dbforge();
-			$fields = array(
-				$language => array(
-					'type' => 'LONGTEXT'
-				)
-			);
-			$this->dbforge->add_column('language', $fields);
-			
-			$this->session->set_flashdata('flash_message', get_phrase('settings_updated'));
-			redirect(base_url() . 'index.php?admin/manage_language/', 'refresh');
-		}
-		if ($param1 == 'delete_language') {
-			$language = $param2;
-			$this->load->dbforge();
-			$this->dbforge->drop_column('language', $language);
-			$this->session->set_flashdata('flash_message', get_phrase('settings_updated'));
-			
-			redirect(base_url() . 'index.php?admin/manage_language/', 'refresh');
-		}
-		$page_data['page_name']        = 'manage_language';
-		$page_data['page_title']       = 'Manage Language';
-		//$page_data['language_phrases'] = $this->db->get('language')->result_array();
-		$this->load->view('backend/index', $page_data);	
-    }
+    
     
     /*****BACKUP / RESTORE / DELETE DATA PAGE**********/
     function backup_restore($operation = '', $type = '')
@@ -1367,7 +1308,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/manage_profile/', 'refresh');
         }
         $page_data['page_name']  = 'manage_profile';
-        $page_data['page_title'] = 'Manage Profile';
+        $page_data['page_title'] = 'Administrar Perfil';
         $page_data['edit_data']  = $this->db->get_where('admin', array(
             'admin_id' => $this->session->userdata('admin_id')
         ))->result_array();
