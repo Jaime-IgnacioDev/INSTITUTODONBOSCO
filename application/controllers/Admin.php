@@ -296,50 +296,23 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         if ($param1 == 'create') {
-            $data['name']       = $this->input->post('name');
-            $data['birthday']   = $this->input->post('birthday');
-            $data['sex']        = $this->input->post('sex');
-            $data['address']    = $this->input->post('address');
-            $data['phone']      = $this->input->post('phone');
-            $data['email']      = $this->input->post('email');
-            $data['password']   = $this->input->post('password');
-            $data['class_id']   = $this->input->post('class_id');
-            if ($this->input->post('section_id') != '') {
-                $data['section_id'] = $this->input->post('section_id');
-            }
-            $data['parent_id']  = $this->input->post('parent_id');
-            $data['roll']       = $this->input->post('roll');
-            $this->db->insert('student', $data);
-            $student_id = $this->db->insert_id();
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $student_id . '.jpg');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            $this->email_model->account_opening_email('student', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
-            redirect(base_url() . 'index.php?admin/student_add/' . $data['class_id'], 'refresh');
+            //$this->load->model('student_model');
+            $this->student_model->insert_st();
+            $this->session->set_flashdata('flash_message' , get_phrase('Estudiante agregado exitosamente'));
+            redirect(base_url() . 'index.php?admin/student_add/' . $_POST['class_id'], 'refresh');
         }
         if ($param2 == 'do_update') {
-            $data['name']        = $this->input->post('name');
-            $data['birthday']    = $this->input->post('birthday');
-            $data['sex']         = $this->input->post('sex');
-            $data['address']     = $this->input->post('address');
-            $data['phone']       = $this->input->post('phone');
-            $data['email']       = $this->input->post('email');
-            $data['class_id']    = $this->input->post('class_id');
-            $data['section_id']  = $this->input->post('section_id');
-            $data['parent_id']   = $this->input->post('parent_id');
-            $data['roll']        = $this->input->post('roll');
-            
-            $this->db->where('student_id', $param3);
-            $this->db->update('student', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $param3 . '.jpg');
-            $this->crud_model->clear_cache();
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->student_model->update_st($param3);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/student_information/' . $param1, 'refresh');
         } 
 		
         if ($param2 == 'delete') {
-            $this->db->where('student_id', $param3);
-            $this->db->delete('student');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            //$this->db->where('student_id', $param3);
+            //$this->db->delete('student');
+            $this->student_model->delete_st($param3);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/student_information/' . $param1, 'refresh');
         }
     }
@@ -349,32 +322,24 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         if ($param1 == 'create') {
-            $data['name']        			= $this->input->post('name');
-            $data['email']       			= $this->input->post('email');
-            $data['password']    			= $this->input->post('password');
-            $data['phone']       			= $this->input->post('phone');
-            $data['address']     			= $this->input->post('address');
-            $data['profession']  			= $this->input->post('profession');
-            $this->db->insert('parent', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            $this->email_model->account_opening_email('parent', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
+            //$this->db->insert('parent', $data);
+            $this->parent_model->insert_pt();
+            $this->session->set_flashdata('flash_message' , get_phrase('Apoderado agregado exitosamente'));
+            //$this->email_model->account_opening_email('parent', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
         if ($param1 == 'edit') {
-            $data['name']                   = $this->input->post('name');
-            $data['email']                  = $this->input->post('email');
-            $data['phone']                  = $this->input->post('phone');
-            $data['address']                = $this->input->post('address');
-            $data['profession']             = $this->input->post('profession');
-            $this->db->where('parent_id' , $param2);
-            $this->db->update('parent' , $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            //$this->db->where('parent_id' , $param2);
+            //$this->db->update('parent' , $data);
+            $this->parent_model->update_pt($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
         if ($param1 == 'delete') {
-            $this->db->where('parent_id' , $param2);
-            $this->db->delete('parent');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            //$this->db->where('parent_id' , $param2);
+            //$this->db->delete('parent');
+            $this->parent_model->delete_pt($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
         $page_data['page_title'] 	= 'Apoderados';
