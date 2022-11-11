@@ -159,7 +159,7 @@ class Admin extends CI_Controller
 	     }*/
 
            // move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/'.$photo);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            $this->session->set_flashdata('flash_message' , get_phrase('Estudiante agregado exitosamente'));
             //$this->email_model->account_opening_email('teacher', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
             redirect(base_url() . 'index.php?admin/online_admission/', 'refresh');
         }
@@ -174,7 +174,7 @@ class Admin extends CI_Controller
             $this->db->where('teacher_id', $param2);
             $this->db->update('teacher', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $param2 . '.jpg');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/online_admission/', 'refresh');
         } else if ($param1 == 'personal_profile') {
             $page_data['personal_profile']   = true;
@@ -187,7 +187,7 @@ class Admin extends CI_Controller
         if ($param1 == 'delete') {
             $this->db->where('teacher_id', $param2);
             $this->db->delete('teacher');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->session->set_flashdata('flash_message' , get_phrase('dato eliminados'));
             redirect(base_url() . 'index.php?admin/online_admission/', 'refresh');
         }
 	
@@ -214,10 +214,6 @@ class Admin extends CI_Controller
         $page_data['page_name']  = 'online_admission';
 		$page_data['page_title'] = 'Online Admission';
         $this->load->view('backend/admin/onlineAdmissionRept', $page_data);
-		
-		//$this->load->helper(array('dompdf', 'file'));
-	    //$html=$this->load->view('backend/admin/onlineAdmissionRept', $page_data, true);     
-        //pdf_create($html, 'AdmissionForm-'.$param1);
 			
 	}
 	function student_bulk_add($param1 = '')
@@ -296,7 +292,6 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         if ($param1 == 'create') {
-            //$this->load->model('student_model');
             $this->student_model->insert_st();
             $this->session->set_flashdata('flash_message' , get_phrase('Estudiante agregado exitosamente'));
             redirect(base_url() . 'index.php?admin/student_add/' . $_POST['class_id'], 'refresh');
@@ -309,8 +304,6 @@ class Admin extends CI_Controller
         } 
 		
         if ($param2 == 'delete') {
-            //$this->db->where('student_id', $param3);
-            //$this->db->delete('student');
             $this->student_model->delete_st($param3);
             $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/student_information/' . $param1, 'refresh');
@@ -322,22 +315,16 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         if ($param1 == 'create') {
-            //$this->db->insert('parent', $data);
             $this->parent_model->insert_pt();
             $this->session->set_flashdata('flash_message' , get_phrase('Apoderado agregado exitosamente'));
-            //$this->email_model->account_opening_email('parent', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
         if ($param1 == 'edit') {
-            //$this->db->where('parent_id' , $param2);
-            //$this->db->update('parent' , $data);
             $this->parent_model->update_pt($param2);
             $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
         if ($param1 == 'delete') {
-            //$this->db->where('parent_id' , $param2);
-            //$this->db->delete('parent');
             $this->parent_model->delete_pt($param2);
             $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
@@ -354,32 +341,16 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['name']        = $this->input->post('name');
-            $data['birthday']    = $this->input->post('birthday');
-            $data['sex']         = $this->input->post('sex');
-            $data['address']     = $this->input->post('address');
-            $data['phone']       = $this->input->post('phone');
-            $data['email']       = $this->input->post('email');
-            $data['password']    = $this->input->post('password');
-            $this->db->insert('teacher', $data);
-            $teacher_id = $this->db->insert_id();
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $teacher_id . '.jpg');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            $this->email_model->account_opening_email('teacher', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
+            $this->teacher_model->insert_tc();
+            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $param2 . '.jpg');
+            $this->session->set_flashdata('flash_message' , get_phrase('Profesor agregar exitosamente'));
+            $this->email_model->account_opening_email('teacher', $param2['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
             redirect(base_url() . 'index.php?admin/teacher/', 'refresh');
         }
         if ($param1 == 'do_update') {
-            $data['name']        = $this->input->post('name');
-            $data['birthday']    = $this->input->post('birthday');
-            $data['sex']         = $this->input->post('sex');
-            $data['address']     = $this->input->post('address');
-            $data['phone']       = $this->input->post('phone');
-            $data['email']       = $this->input->post('email');
-            
-            $this->db->where('teacher_id', $param2);
-            $this->db->update('teacher', $data);
+            $this->teacher_model->update_tc($param2);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $param2 . '.jpg');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/teacher/', 'refresh');
         } else if ($param1 == 'personal_profile') {
             $page_data['personal_profile']   = true;
@@ -390,9 +361,8 @@ class Admin extends CI_Controller
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            $this->db->where('teacher_id', $param2);
-            $this->db->delete('teacher');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->teacher_model->delete_tc($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/teacher/', 'refresh');
         }
         $page_data['teachers']   = $this->db->get('teacher')->result_array();
@@ -407,31 +377,22 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['name']       = $this->input->post('name');
-            $data['class_id']   = $this->input->post('class_id');
-            $data['teacher_id'] = $this->input->post('teacher_id');
-            $this->db->insert('subject', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/subject/'.$data['class_id'], 'refresh');
+            $this->subject_model->insert_sj();
+            $this->session->set_flashdata('flash_message' , get_phrase('Asignatura agregada exitosamente'));
+            redirect(base_url() . 'index.php?admin/subject/'.$param2['class_id'], 'refresh');
         }
         if ($param1 == 'do_update') {
-            $data['name']       = $this->input->post('name');
-            $data['class_id']   = $this->input->post('class_id');
-            $data['teacher_id'] = $this->input->post('teacher_id');
-            
-            $this->db->where('subject_id', $param2);
-            $this->db->update('subject', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/subject/'.$data['class_id'], 'refresh');
+            $this->subject_model->update_sj($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
+            redirect(base_url() . 'index.php?admin/subject/'.$param2['class_id'], 'refresh');
         } else if ($param1 == 'edit') {
             $page_data['edit_data'] = $this->db->get_where('subject', array(
                 'subject_id' => $param2
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            $this->db->where('subject_id', $param2);
-            $this->db->delete('subject');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->subject_model->delete_sj($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/subject/'.$param3, 'refresh');
         }
 		 $page_data['class_id']   = $param1;
@@ -447,21 +408,13 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['name']         = $this->input->post('name');
-            $data['name_numeric'] = $this->input->post('name_numeric');
-            $data['teacher_id']   = $this->input->post('teacher_id');
-            $this->db->insert('class', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            $this->classes_model->insert_cl();
+            $this->session->set_flashdata('flash_message' , get_phrase('Curso agregado exitosamente'));
             redirect(base_url() . 'index.php?admin/classes/', 'refresh');
         }
         if ($param1 == 'do_update') {
-            $data['name']         = $this->input->post('name');
-            $data['name_numeric'] = $this->input->post('name_numeric');
-            $data['teacher_id']   = $this->input->post('teacher_id');
-            
-            $this->db->where('class_id', $param2);
-            $this->db->update('class', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->classes_model->update_cl($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/classes/', 'refresh');
         } else if ($param1 == 'edit') {
             $page_data['edit_data'] = $this->db->get_where('class', array(
@@ -469,9 +422,8 @@ class Admin extends CI_Controller
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            $this->db->where('class_id', $param2);
-            $this->db->delete('class');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->classes_model->delete_cl($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/classes/', 'refresh');
         }
         $page_data['classes']    = $this->db->get('class')->result_array();
@@ -500,30 +452,20 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['name']       =   $this->input->post('name');
-            $data['nick_name']  =   $this->input->post('nick_name');
-            $data['class_id']   =   $this->input->post('class_id');
-            $data['teacher_id'] =   $this->input->post('teacher_id');
-            $this->db->insert('section' , $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/section/' . $data['class_id'] , 'refresh');
+            $this->section_model->insert_sec();
+            $this->session->set_flashdata('flash_message' , get_phrase('Sección agregada exitosamente'));
+            redirect(base_url() . 'index.php?admin/section/' . $param2['class_id'] , 'refresh');
         }
 
         if ($param1 == 'edit') {
-            $data['name']       =   $this->input->post('name');
-            $data['nick_name']  =   $this->input->post('nick_name');
-            $data['class_id']   =   $this->input->post('class_id');
-            $data['teacher_id'] =   $this->input->post('teacher_id');
-            $this->db->where('section_id' , $param2);
-            $this->db->update('section' , $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/section/' . $data['class_id'] , 'refresh');
+            $this->section_model->update_sec($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
+            redirect(base_url() . 'index.php?admin/section/' . $param2['class_id'] , 'refresh');
         }
 
         if ($param1 == 'delete') {
-            $this->db->where('section_id' , $param2);
-            $this->db->delete('section');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->section_model->delete_sec($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/section' , 'refresh');
         }
     }
@@ -554,21 +496,16 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['name']    = $this->input->post('name');
-            $data['date']    = $this->input->post('date');
-            $data['comment'] = $this->input->post('comment');
-            $this->db->insert('exam', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            //$this->db->insert('exam', $data);
+            $this->exam_model->insert_exm();
+            $this->session->set_flashdata('flash_message' , get_phrase('Prueba agregada exitosamente'));
             redirect(base_url() . 'index.php?admin/exam/', 'refresh');
         }
         if ($param1 == 'edit' && $param2 == 'do_update') {
-            $data['name']    = $this->input->post('name');
-            $data['date']    = $this->input->post('date');
-            $data['comment'] = $this->input->post('comment');
-            
-            $this->db->where('exam_id', $param3);
-            $this->db->update('exam', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            //$this->db->where('exam_id', $param3);
+            //$this->db->update('exam', $data);
+            $this->exam_model->update_exm($param3);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/exam/', 'refresh');
         } else if ($param1 == 'edit') {
             $page_data['edit_data'] = $this->db->get_where('exam', array(
@@ -576,9 +513,10 @@ class Admin extends CI_Controller
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            $this->db->where('exam_id', $param2);
-            $this->db->delete('exam');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            //$this->db->where('exam_id', $param2);
+            //$this->db->delete('exam');
+            $this->exam_model->delete_exm($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/exam/', 'refresh');
         }
         $page_data['exams']      = $this->db->get('exam')->result_array();
@@ -610,7 +548,6 @@ class Admin extends CI_Controller
                 if ($receiver == 'parent' && $row['parent_id'] != '') 
                     $receiver_phone = $this->db->get_where('parent' , array('parent_id' => $row['parent_id']))->row()->phone;
                 
-
                 $this->db->where('exam_id' , $exam_id);
                 $this->db->where('student_id' , $row['student_id']);
                 $marks = $this->db->get('mark')->result_array();
@@ -657,7 +594,8 @@ class Admin extends CI_Controller
             
             $this->db->where('mark_id', $this->input->post('mark_id'));
             $this->db->update('mark', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            //$this->mark_model->update_mrk();
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/marks/' . $this->input->post('exam_id') . '/' . $this->input->post('class_id') . '/' . $this->input->post('subject_id'), 'refresh');
         }
         $page_data['exam_id']    = $exam_id;
