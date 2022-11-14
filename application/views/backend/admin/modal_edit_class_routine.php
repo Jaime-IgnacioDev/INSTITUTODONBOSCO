@@ -38,16 +38,16 @@ $edit_data		=	$this->db->get_where('class_routine' , array('class_routine_id' =>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo ('Día');?></label>
+                    <label class="col-sm-3 control-label"><?php echo ('Day');?></label>
                     <div class="col-sm-5">
                         <select name="day" class="form-control">
-                            <option value="Domingo" 	<?php if($row['day']=='Domingo')echo 'selected="selected"';?>>Saturday</option>
-                            <option value="Sabado" 		<?php if($row['day']=='Sabado')echo 'selected="selected"';?>>Sunday</option>
-                            <option value="Lunes" 		<?php if($row['day']=='Lunes')echo 'selected="selected"';?>>Monday</option>
-                            <option value="Martes" 	<?php if($row['day']=='Martes')echo 'selected="selected"';?>>Tuesday</option>
-                            <option value="Miercoles" 	<?php if($row['day']=='Miercoles')echo 'selected="selected"';?>>Wednesday</option>
-                            <option value="Jueves" 	<?php if($row['day']=='Jueves')echo 'selected="selected"';?>>Thursday</option>
-                            <option value="Viernes" 		<?php if($row['day']=='Viernes')echo 'selected="selected"';?>>Friday</option>
+                            <option value="Saturday" 	<?php if($row['day']=='Saturday')echo 'selected="selected"';?>>Sabado</option>
+                            <option value="Sunday" 		<?php if($row['day']=='Sunday')echo 'selected="selected"';?>>Domingo</option>
+                            <option value="Monday" 		<?php if($row['day']=='Monday')echo 'selected="selected"';?>>Lunes</option>
+                            <option value="Tuesday" 	<?php if($row['day']=='Tuesday')echo 'selected="selected"';?>>Martes</option>
+                            <option value="Wednesday" 	<?php if($row['day']=='Wednesday')echo 'selected="selected"';?>>Miercoles</option>
+                            <option value="Thursday" 	<?php if($row['day']=='Thursday')echo 'selected="selected"';?>>Jueves</option>
+                            <option value="Friday" 		<?php if($row['day']=='Friday')echo 'selected="selected"';?>>Viernes</option>
                         </select>
                     </div>
                 </div>

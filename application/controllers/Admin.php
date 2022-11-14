@@ -496,14 +496,11 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            //$this->db->insert('exam', $data);
             $this->exam_model->insert_exm();
             $this->session->set_flashdata('flash_message' , get_phrase('Prueba agregada exitosamente'));
             redirect(base_url() . 'index.php?admin/exam/', 'refresh');
         }
         if ($param1 == 'edit' && $param2 == 'do_update') {
-            //$this->db->where('exam_id', $param3);
-            //$this->db->update('exam', $data);
             $this->exam_model->update_exm($param3);
             $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/exam/', 'refresh');
@@ -513,8 +510,6 @@ class Admin extends CI_Controller
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            //$this->db->where('exam_id', $param2);
-            //$this->db->delete('exam');
             $this->exam_model->delete_exm($param2);
             $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/exam/', 'refresh');
@@ -616,25 +611,13 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['name']        = $this->input->post('name');
-            $data['grade_point'] = $this->input->post('grade_point');
-            $data['mark_from']   = $this->input->post('mark_from');
-            $data['mark_upto']   = $this->input->post('mark_upto');
-            $data['comment']     = $this->input->post('comment');
-            $this->db->insert('grade', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            $this->grades_model->insert_grd();
+            $this->session->set_flashdata('flash_message' , get_phrase('Nota agregada exitosamente'));
             redirect(base_url() . 'index.php?admin/grade/', 'refresh');
         }
         if ($param1 == 'do_update') {
-            $data['name']        = $this->input->post('name');
-            $data['grade_point'] = $this->input->post('grade_point');
-            $data['mark_from']   = $this->input->post('mark_from');
-            $data['mark_upto']   = $this->input->post('mark_upto');
-            $data['comment']     = $this->input->post('comment');
-            
-            $this->db->where('grade_id', $param2);
-            $this->db->update('grade', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->grades_model->update_grd($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/grade/', 'refresh');
         } else if ($param1 == 'edit') {
             $page_data['edit_data'] = $this->db->get_where('grade', array(
@@ -642,9 +625,8 @@ class Admin extends CI_Controller
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            $this->db->where('grade_id', $param2);
-            $this->db->delete('grade');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->grades_model->delete_grd($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/grade/', 'refresh');
         }
         $page_data['grades']     = $this->db->get('grade')->result_array();
@@ -659,25 +641,17 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
-            $data['class_id']   = $this->input->post('class_id');
-            $data['subject_id'] = $this->input->post('subject_id');
             $data['time_start'] = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
             $data['time_end']   = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
-            $data['day']        = $this->input->post('day');
-            $this->db->insert('class_routine', $data);
+            $this->classroutine_model->insert_clr();
             $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
             redirect(base_url() . 'index.php?admin/class_routine/', 'refresh');
         }
         if ($param1 == 'do_update') {
-            $data['class_id']   = $this->input->post('class_id');
-            $data['subject_id'] = $this->input->post('subject_id');
             $data['time_start'] = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
             $data['time_end']   = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
-            $data['day']        = $this->input->post('day');
-            
-            $this->db->where('class_routine_id', $param2);
-            $this->db->update('class_routine', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->classroutine_model->update_clr($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/class_routine/', 'refresh');
         } else if ($param1 == 'edit') {
             $page_data['edit_data'] = $this->db->get_where('class_routine', array(
@@ -685,9 +659,8 @@ class Admin extends CI_Controller
             ))->result_array();
         }
         if ($param1 == 'delete') {
-            $this->db->where('class_routine_id', $param2);
-            $this->db->delete('class_routine');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            $this->classroutine_model->delete_clr($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/class_routine/', 'refresh');
         }
         $page_data['page_name']  = 'class_routine';
@@ -872,27 +845,32 @@ class Admin extends CI_Controller
         $this->load->view('backend/index', $page_data); 
     }
 
+    /************expense category****************/
+
     function expense_category($param1 = '' , $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         if ($param1 == 'create') {
             $data['name']   =   $this->input->post('name');
-            $this->db->insert('expense_category' , $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            //$this->db->insert('expense_category' , $data);
+            $this->expensecat_model->insert_expcat();
+            $this->session->set_flashdata('flash_message' , get_phrase('Gasto agregado exitosamente'));
             redirect(base_url() . 'index.php?admin/expense_category');
         }
         if ($param1 == 'edit') {
             $data['name']   =   $this->input->post('name');
-            $this->db->where('expense_category_id' , $param2);
-            $this->db->update('expense_category' , $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            //$this->db->where('expense_category_id' , $param2);
+            //$this->db->update('expense_category' , $data);
+            $this->expensecat_model->update_expcat($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?admin/expense_category');
         }
         if ($param1 == 'delete') {
-            $this->db->where('expense_category_id' , $param2);
-            $this->db->delete('expense_category');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            //$this->db->where('expense_category_id' , $param2);
+            //$this->db->delete('expense_category');
+            $this->expensecat_model->delete_expcat($param2);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos eliminados'));
             redirect(base_url() . 'index.php?admin/expense_category');
         }
 
