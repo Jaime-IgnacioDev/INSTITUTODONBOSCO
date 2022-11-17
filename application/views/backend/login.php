@@ -119,11 +119,7 @@ var baseurl = '<?php echo base_url();?>';
 			</form>
 			
 			
-			<div class="login-bottom-links">
-				<A href="<?php echo base_url();?>index.php?login/forgot_password" class="link">
-					<?php echo get_phrase('forgot_your_password');?> ?
-				</A>
-			</div>
+			
 			
 
 <style>

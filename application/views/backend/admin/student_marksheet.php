@@ -7,7 +7,7 @@
             <li class="active">
                 <a href="#home" data-toggle="tab">
                     <span class="visible-xs"><i class="entypo-users"></i></span>
-                    <span class="hidden-xs"><?php echo ('All Students');?></span>
+                    <span class="hidden-xs"><?php echo ('Todos los estudiantes');?></span>
                 </a>
             </li>
         <?php 
@@ -19,7 +19,7 @@
             <li>
                 <a href="#<?php echo $row['section_id'];?>" data-toggle="tab">
                     <span class="visible-xs"><i class="entypo-user"></i></span>
-                    <span class="hidden-xs"><?php echo ('Section');?> <?php echo $row['name'];?> ( <?php echo $row['nick_name'];?> )</span>
+                    <span class="hidden-xs"><?php echo ('Sección');?> <?php echo $row['name'];?> ( <?php echo $row['nick_name'];?> )</span>
                 </a>
             </li>
         <?php endforeach;?>

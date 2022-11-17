@@ -208,13 +208,13 @@ class Parents extends CI_Controller
 
         if ($param1 == 'send_new') {
             $message_thread_code = $this->crud_model->send_new_private_message();
-            $this->session->set_flashdata('flash_message', get_phrase('message_sent!'));
+            $this->session->set_flashdata('flash_message', get_phrase('mensaje enviado!'));
             redirect(base_url() . 'index.php?parents/message/message_read/' . $message_thread_code, 'refresh');
         }
 
         if ($param1 == 'send_reply') {
             $this->crud_model->send_reply_message($param2);  //$param2 = message_thread_code
-            $this->session->set_flashdata('flash_message', get_phrase('message_sent!'));
+            $this->session->set_flashdata('flash_message', get_phrase('respuesta enviada!'));
             redirect(base_url() . 'index.php?parents/message/message_read/' . $param2, 'refresh');
         }
 
@@ -240,7 +240,7 @@ class Parents extends CI_Controller
             
             $this->db->where('parent_id', $this->session->userdata('parent_id'));
             $this->db->update('parent', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
+            $this->session->set_flashdata('flash_message', get_phrase('Cuenta actualizada'));
             redirect(base_url() . 'index.php?parents/manage_profile/', 'refresh');
         }
         if ($param1 == 'change_password') {
@@ -256,9 +256,9 @@ class Parents extends CI_Controller
                 $this->db->update('parent', array(
                     'password' => $data['new_password']
                 ));
-                $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
+                $this->session->set_flashdata('flash_message', get_phrase('contraseña actualizada'));
             } else {
-                $this->session->set_flashdata('flash_message', get_phrase('password_mismatch'));
+                $this->session->set_flashdata('flash_message', get_phrase('contraseña no conincide'));
             }
             redirect(base_url() . 'index.php?parents/manage_profile/', 'refresh');
         }

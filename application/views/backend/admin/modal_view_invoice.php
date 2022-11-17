@@ -115,7 +115,7 @@ foreach ($edit_data as $row):
 
     function Popup(data)
     {
-        var mywindow = window.open('', 'invoice', 'height=400,width=600');
+        var mywindow = window.open('', 'invoice', 'height=800,width=1000');
         mywindow.document.write('<html><head><title>Invoice</title>');
         mywindow.document.write('<link rel="stylesheet" href="assets/css/neon-theme.css" type="text/css" />');
         mywindow.document.write('<link rel="stylesheet" href="assets/js/datatables/responsive/css/datatables.responsive.css" type="text/css" />');

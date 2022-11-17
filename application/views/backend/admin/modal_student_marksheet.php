@@ -46,7 +46,7 @@ foreach ($student_info as $row1):
                                     <thead>
                                         <tr>
                                             <th>Asignatura</th>
-                                            <th>Notas Obtenidas</th>
+                                           <th>Notas Obtenidas</th>
                                             <th>Nota Maxima</th>
                                             <th>Evaluación</th>
                                             <th>Comentario</th>
@@ -106,7 +106,7 @@ foreach ($student_info as $row1):
                                 <hr />
                                 Notas Totales : <?php echo $total_marks; ?>
                                 <hr />
-                                GPA(grade point average) : <?php echo round($total_grade_point / $total_subjects, 2); ?>
+                                Promedio : <?php echo round($total_marks / $total_subjects, 2); ?>
                                 <div id="chartdiv"></div>
                                 <script>
                                     setTimeout(function() {
@@ -114,7 +114,7 @@ foreach ($student_info as $row1):
                                             "theme": "none",
                                             "type": "serial",
                                             "dataProvider": [
-                                                <?php for( $i = 0; $i < count($subjects); $i++ ) { ?>
+                                                <?php for( $i = 0; $i < count($subjects); $i++ ) { ?>, //borrar , en caso de fallo
                                                     {
                                                         "subject": "<?php echo $subject_name[$i]; ?>",
                                                         "mark_obtained": <?php echo $mark_obtained[$i]; ?>,

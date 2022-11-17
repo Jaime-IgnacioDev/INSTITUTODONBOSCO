@@ -86,18 +86,7 @@
                 
             </div>
 
-            <div class="col-md-4">
             
-                <div class="tile-stats tile-brown">
-                    <div class="icon"><i class="entypo-user"></i></div>
-                    <div class="num" data-start="0" data-end="<?php $query = $this->db->query('SELECT * FROM invoice WHERE status = "unpaid"'); echo $query->num_rows();?>" 
-                    		data-postfix="" data-duration="500" data-delay="0">0</div>
-                    
-                    <h3><?php echo ('Matriculas Pendientes');?></h3>
-                   
-                </div>
-                
-            </div>
 
             <div class="col-md-4">
             

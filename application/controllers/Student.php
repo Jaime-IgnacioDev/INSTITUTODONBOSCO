@@ -240,13 +240,13 @@ class Student extends CI_Controller
 
         if ($param1 == 'send_new') {
             $message_thread_code = $this->crud_model->send_new_private_message();
-            $this->session->set_flashdata('flash_message', get_phrase('message_sent!'));
+            $this->session->set_flashdata('flash_message', get_phrase('mensaje enviado!'));
             redirect(base_url() . 'index.php?student/message/message_read/' . $message_thread_code, 'refresh');
         }
 
         if ($param1 == 'send_reply') {
             $this->crud_model->send_reply_message($param2);  //$param2 = message_thread_code
-            $this->session->set_flashdata('flash_message', get_phrase('message_sent!'));
+            $this->session->set_flashdata('flash_message', get_phrase('respuesta enviada!'));
             redirect(base_url() . 'index.php?student/message/message_read/' . $param2, 'refresh');
         }
 
@@ -273,7 +273,7 @@ class Student extends CI_Controller
             $this->db->where('student_id', $this->session->userdata('student_id'));
             $this->db->update('student', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $this->session->userdata('student_id') . '.jpg');
-            $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
+            $this->session->set_flashdata('flash_message', get_phrase('cuenta actualizada'));
             redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
         }
         if ($param1 == 'change_password') {
@@ -289,9 +289,9 @@ class Student extends CI_Controller
                 $this->db->update('student', array(
                     'password' => $data['new_password']
                 ));
-                $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
+                $this->session->set_flashdata('flash_message', get_phrase('contraseña actualizada'));
             } else {
-                $this->session->set_flashdata('flash_message', get_phrase('password_mismatch'));
+                $this->session->set_flashdata('flash_message', get_phrase('contraseña no coincide'));
             }
             redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
         }

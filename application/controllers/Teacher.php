@@ -271,7 +271,7 @@ class Teacher extends CI_Controller
             $this->db->where('teacher_id', $this->session->userdata('teacher_id'));
             $this->db->update('teacher', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $this->session->userdata('teacher_id') . '.jpg');
-            $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
+            $this->session->set_flashdata('flash_message', get_phrase('cuenta actualizada'));
             redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
         }
         if ($param1 == 'change_password') {
@@ -287,9 +287,9 @@ class Teacher extends CI_Controller
                 $this->db->update('teacher', array(
                     'password' => $data['new_password']
                 ));
-                $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
+                $this->session->set_flashdata('flash_message', get_phrase('contraseña actualizada'));
             } else {
-                $this->session->set_flashdata('flash_message', get_phrase('password_mismatch'));
+                $this->session->set_flashdata('flash_message', get_phrase('contraseña no coincide'));
             }
             redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
         }
@@ -359,7 +359,7 @@ class Teacher extends CI_Controller
                 $this->db->update('attendance' , array('status' => $attendance_status));
             }
 
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             redirect(base_url() . 'index.php?teacher/manage_attendance/'.$date.'/'.$month.'/'.$year.'/'.$class_id , 'refresh');
         }
         $page_data['date']     =    $date;
@@ -400,7 +400,7 @@ class Teacher extends CI_Controller
             $data['create_timestamp'] = strtotime($this->input->post('create_timestamp'));
             $this->db->where('notice_id', $param2);
             $this->db->update('noticeboard', $data);
-            $this->session->set_flashdata('flash_message', get_phrase('notice_updated'));
+            $this->session->set_flashdata('flash_message', get_phrase('comunicado actualizado'));
             redirect(base_url() . 'index.php?teacher/noticeboard/', 'refresh');
         } else if ($param1 == 'edit') {
             $page_data['edit_data'] = $this->db->get_where('noticeboard', array(
@@ -431,13 +431,13 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'send_new') {
             $message_thread_code = $this->crud_model->send_new_private_message();
-            $this->session->set_flashdata('flash_message', get_phrase('message_sent!'));
+            $this->session->set_flashdata('flash_message', get_phrase('mensaje enviado!'));
             redirect(base_url() . 'index.php?teacher/message/message_read/' . $message_thread_code, 'refresh');
         }
 
         if ($param1 == 'send_reply') {
             $this->crud_model->send_reply_message($param2);  //$param2 = message_thread_code
-            $this->session->set_flashdata('flash_message', get_phrase('message_sent!'));
+            $this->session->set_flashdata('flash_message', get_phrase('respuesta enviada!'));
             redirect(base_url() . 'index.php?teacher/message/message_read/' . $param2, 'refresh');
         }
 

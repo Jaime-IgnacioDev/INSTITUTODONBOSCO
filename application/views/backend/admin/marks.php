@@ -17,7 +17,7 @@
                 <?php echo form_open(base_url() . 'index.php?admin/marks');?>
                 <table border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover table-striped">
                 	<tr>
-                        <td><?php echo ('Selecciona el Examen');?></td>
+                        <td><?php echo ('Selecciona el Semestre');?></td>
                         <td><?php echo ('Selecciona la Clase');?></td>
                         <td><?php echo ('Selecciona la Asignatura');?></td>
                         <td>&nbsp;</td>
@@ -25,14 +25,14 @@
                 	<tr>
                         <td>
                         	<select name="exam_id" class="form-control"  style="float:left;">
-                                <option value=""><?php echo ('Seleccione un examen');?></option>
+                                <option value=""><?php echo ('Seleccione un semestre');?></option>
                                 <?php 
                                 $exams = $this->db->get('exam')->result_array();
                                 foreach($exams as $row):
                                 ?>
                                     <option value="<?php echo $row['exam_id'];?>"
                                         <?php if($exam_id == $row['exam_id'])echo 'selected';?>>
-                                            <?php echo ('Class');?> <?php echo $row['name'];?></option>
+                                            <?php echo ('-');?> <?php echo $row['name'];?></option>
                                 <?php
                                 endforeach;
                                 ?>

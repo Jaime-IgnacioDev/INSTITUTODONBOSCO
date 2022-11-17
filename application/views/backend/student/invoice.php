@@ -22,7 +22,7 @@
                     		<th><div><?php echo ('Monto');?></div></th>
                     		<th><div><?php echo ('Estado');?></div></th>
                     		<th><div><?php echo ('Fecha');?></div></th>
-                    		<th><div><?php echo ('Opciones');?></div></th>
+                    		
 						</tr>
 					</thead>
                     <tbody>
@@ -36,14 +36,7 @@
 								<span class="label label-<?php if($row['status']=='paid')echo 'success';else echo 'secondary';?>"><?php echo $row['status'];?></span>
 							</td>
 							<td><?php echo date('d M,Y', $row['creation_timestamp']);?></td>
-							<td>
-                            <?php echo form_open('student/invoice/make_payment');?>
-                                	<input type="hidden" name="invoice_id" 		value="<?php echo $row['invoice_id'];?>" />
-                                		<button type="submit" class="btn btn-info"><i class="entypo-paypal"></i> Pay with paypal</button>
-                                </form>
-                                
-                            
-        					</td>
+							
                         </tr>
                         <?php endforeach;?>
                     </tbody>

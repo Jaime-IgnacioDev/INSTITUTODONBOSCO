@@ -107,7 +107,7 @@
                 <div class="box-content">
                 	<?php echo form_open(base_url() . 'index.php?admin/class_routine/create' , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top'));?>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ('Class');?></label>
+                                <label class="col-sm-3 control-label"><?php echo ('Curso');?></label>
                                 <div class="col-sm-5">
                                     <select name="class_id" class="form-control" style="width:100%;"
                                         onchange="return get_class_subject(this.value)">
@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ('Day');?></label>
+                                <label class="col-sm-3 control-label"><?php echo ('Dia');?></label>
                                 <div class="col-sm-5">
                                     <select name="day" class="form-control" style="width:100%;">
                                         <option value="sunday">Domingo</option>
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ('Starting Time');?></label>
+                                <label class="col-sm-3 control-label"><?php echo ('Hora de Inicio');?></label>
                                 <div class="col-sm-5">
                                     <select name="time_start" class="form-control" style="width:100%;">
 										<?php for($i = 0; $i <= 12 ; $i++):?>
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo ('Ending Time');?></label>
+                                <label class="col-sm-3 control-label"><?php echo ('Hora de Termino');?></label>
                                 <div class="col-sm-5">
                                     <select name="time_end" class="form-control" style="width:100%;">
 										<?php for($i = 0; $i <= 12 ; $i++):?>
@@ -176,7 +176,7 @@
                             </div>
                         <div class="form-group">
                               <div class="col-sm-offset-3 col-sm-5">
-                                  <button type="submit" class="btn btn-info"><?php echo ('Add Class Routine');?></button>
+                                  <button type="submit" class="btn btn-info"><?php echo ('Agregar Rutina de Clases');?></button>
                               </div>
 							</div>
                     </form>                

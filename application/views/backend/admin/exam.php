@@ -5,11 +5,11 @@
 		<ul class="nav nav-tabs bordered">
 			<li class="active">
             	<a href="#list" data-toggle="tab"><i class="entypo-menu"></i> 
-					<?php echo ('Lista de Examenes');?>
+					<?php echo ('Semestres');?>
                     	</a></li>
 			<li>
             	<a href="#add" data-toggle="tab"><i class="entypo-plus-circled"></i>
-					<?php echo ('Agregar Examenes');?>
+					<?php echo ('Agregar Semestre');?>
                     	</a></li>
 		</ul>
     	<!------CONTROL TABS END------>
@@ -19,7 +19,7 @@
                 <table  class="table table-bordered table-hover table-striped datatable" id="table_export">
                 	<thead>
                 		<tr>
-                    		<th><div><?php echo ('Nombre de Examen');?></div></th>
+                    		<th><div><?php echo ('Semestre');?></div></th>
                     		<th><div><?php echo ('Fecha');?></div></th>
                     		<th><div><?php echo ('Comentario');?></div></th>
                     		<th><div><?php echo ('Opciones');?></div></th>

@@ -204,24 +204,16 @@
             <ul>
                 <li class="<?php if ($page_name == 'exam') echo 'active'; ?> ">
                     <a href="<?php echo base_url(); ?>index.php?admin/exam">
-                        <span><i class="entypo-dot"></i> <?php echo ('Lista de Evaluaciones'); ?></span>
+                        <span><i class="entypo-dot"></i> <?php echo ('Administrar Semestre Academico'); ?></span>
                     </a>
                 </li>
-                <li class="<?php if ($page_name == 'grade') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/grade">
-                        <span><i class="entypo-dot"></i> <?php echo ('Lista de Notas'); ?></span>
-                    </a>
-                </li>
+                
                 <li class="<?php if ($page_name == 'marks') echo 'active'; ?> ">
                     <a href="<?php echo base_url(); ?>index.php?admin/marks">
                         <span><i class="entypo-dot"></i> <?php echo ('Administrar Notas'); ?></span>
                     </a>
                 </li>
-                <li class="<?php if ($page_name == 'exam_marks_sms') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/exam_marks_sms">
-                        <span><i class="entypo-dot"></i> <?php echo ('Enviar Notas por SMS'); ?></span>
-                    </a>
-                </li>
+                
             </ul>
         </li>
 
