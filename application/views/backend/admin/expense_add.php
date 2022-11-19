@@ -35,7 +35,7 @@
                     </div>
 					
 					<div class="form-group">
-						<label for="field-2" class="col-sm-3 control-label"><?php echo ('Descrición');?></label>
+						<label for="field-2" class="col-sm-3 control-label"><?php echo ('Descripción');?></label>
                         
 						<div class="col-sm-6">
 							<input type="text" class="form-control" name="description" value="" >

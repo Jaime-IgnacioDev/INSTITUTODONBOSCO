@@ -207,11 +207,7 @@
                         <span><i class="entypo-dot"></i> <?php echo ('Administrar Semestre Academico'); ?></span>
                     </a>
                 </li>
-                <li class="<?php if ($page_name == 'grade') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/grade">
-                        <span><i class="entypo-dot"></i> <?php echo ('Lista de Notas'); ?></span>
-                    </a>
-                </li>
+               
                 
                 <li class="<?php if ($page_name == 'marks') echo 'active'; ?> ">
                     <a href="<?php echo base_url(); ?>index.php?admin/marks">
