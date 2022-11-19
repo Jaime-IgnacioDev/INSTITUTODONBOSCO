@@ -39,9 +39,9 @@
                     <table class="table table-bordered table-hover table-striped responsive">
                         <thead>
                             <tr>
-                                <th width="15%"><?php echo ('Class');?></th>
+                                <th width="15%"><?php echo ('Clase');?></th>
                                 <th><?php echo ('Asignatura');?></th>
-                                <th><?php echo ('Puntaje Total');?></th>
+                                
                                 <th><?php echo ('Nota Obtenida');?></th>
                                 <th width="33%"><?php echo ('Comentario');?></th>
                             </tr>
@@ -59,7 +59,7 @@
                                         'subject_id' => $mark['subject_id']
                                     ))->row()->name;?>
                                 </td>
-                                <td><?php echo $mark['mark_total'];?></td>
+                                
                                 <td><?php echo $mark['mark_obtained'];?></td>
                                 <td><?php echo $mark['comment'];?></td>
                             </tr>

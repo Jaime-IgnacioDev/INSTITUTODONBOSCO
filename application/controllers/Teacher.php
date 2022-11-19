@@ -214,11 +214,12 @@ class Teacher extends CI_Controller
         }
         if ($this->input->post('operation') == 'update') {
             $data['mark_obtained'] = $this->input->post('mark_obtained');
-            $data['attendance']    = $this->input->post('attendance');
+            //$data['attendance']    = $this->input->post('attendance');
             $data['comment']       = $this->input->post('comment');
             
             $this->db->where('mark_id', $this->input->post('mark_id'));
             $this->db->update('mark', $data);
+            $this->session->set_flashdata('flash_message' , get_phrase('datos actualizados'));
             
             redirect(base_url() . 'index.php?teacher/marks/' . $this->input->post('exam_id') . '/' . $this->input->post('class_id') . '/' . $this->input->post('subject_id'), 'refresh');
         }

@@ -47,9 +47,9 @@ foreach ($student_info as $row1):
                                         <tr>
                                             <th>Asignatura</th>
                                            <th>Notas Obtenidas</th>
-                                            <th>Nota Maxima</th>
+                                            
                                             <th>Evaluación</th>
-                                            <th>Comentario</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,20 +77,7 @@ foreach ($student_info as $row1):
                                                     endforeach;
                                                     ?>
                                                 </td>
-                                                <td>
-                                                    <?php
-                                                    //highest marks
-                                                    $verify_data = array('exam_id' => $row0['exam_id'],
-                                                        'subject_id' => $row2['subject_id']);
-                                                    $this->db->select_max('mark_obtained', 'mark_highest');
-                                                    $query = $this->db->get_where('mark', $verify_data);
-                                                    $marks = $query->result_array();
-                                                    foreach ($marks as $row4):
-                                                        echo $row4['mark_highest'];
-                                                        $mark_highest[] = $row4['mark_highest'];
-                                                    endforeach;
-                                                    ?>
-                                                </td>
+                                               
                                                 <td>
                                                     <?php
                                                     $grade = $this->crud_model->get_grade($row3['mark_obtained']);
@@ -118,7 +105,7 @@ foreach ($student_info as $row1):
                                                     {
                                                         "subject": "<?php echo $subject_name[$i]; ?>",
                                                         "mark_obtained": <?php echo $mark_obtained[$i]; ?>,
-                                                        "mark_highest": <?php echo $mark_highest[$i]; ?>
+                                                        
                                                     },
                                                 <?php } ?>
                                             ],

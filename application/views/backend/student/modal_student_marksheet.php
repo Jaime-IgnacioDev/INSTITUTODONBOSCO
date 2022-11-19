@@ -91,7 +91,7 @@
                 <hr />
                 Notas Totales : <?php	echo $total_marks;?>
                 <hr />
-                GPA(grade point average) : <?php echo round($total_grade_point/$total_subjects , 2);?>
+                Promedio: <?php echo round($total_marks/$total_subjects , 2);?>
             </center>
             </div>
       	</div>
